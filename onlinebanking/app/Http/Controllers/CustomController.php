@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
 use Session;
+use Account;
 
 
 class CustomController extends Controller
@@ -74,7 +75,11 @@ class CustomController extends Controller
         if(Session::has('loginid')){
             $data = User::where('id','=',Session::get('loginid'))->first();
         }
-        return view('auth.newaccount',compact('data'));
+        $randomnumber = random_int(100000,999999);
+
+
+        return view('auth.newaccount',compact('data','randomnumber'));
     }
+
 }
 

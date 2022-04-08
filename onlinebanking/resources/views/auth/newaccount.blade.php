@@ -35,16 +35,44 @@
       </nav>
       <div class="container">
           <h2>New bank Account</h2>
-          <form></form>
+          <form action="{{ route('new-account') }}" method="post">
+            @if(Session::has('success'))
+            <div class="alert alert-success">{{ Session::get('success') }}</div>
+            @endif
+            @if(Session::has('fail'))
+            <div class="alert alert-danger">{{ Session::get('failed') }}</div>
+            @endif
+            @csrf
+          <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input type="text" name="fullname" class="form-control" id="exampleInputPassword1" placeholder="Full Name">
+          </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <label for="email">Email address</label>
+              <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="mobile">Mobile No:</label>
+                <input type="text" name="mobile" class="form-control" id="exampleInputPassword1" placeholder="Mobile Number">
+              </div>
+              <div class="form-group">
+                <label for="openblnc">Opening Balance</label>
+                <input type="text" name="openbalance" class="form-control" id="exampleInputPassword1">
+              </div>
+            <div class="form-group">
+              <label for="accnum">Account Number</label>
+              <input type="text" class="form-control" name="accnum" id="accnum" value="{{ $randomnumber}}" placeholder="accountnum">
             </div>
+            <div class="form-group">
+                <label for="profile">Profile Photo</label>
+                <input type="file" name="profileupload" class="form-control" id="profile" >
+              </div>
+              <div class="form-group">
+                <label for="mpin">MPIN</label>
+                <input type="password" class="form-control" id="mpin" name="mpin" placeholder="MPIN" minlength="6" maxlength="6">
+                <small>Enter 6 digit Mpin</small>
+              </div>
             <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
