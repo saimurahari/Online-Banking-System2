@@ -35,7 +35,7 @@
       </nav>
       <div class="container">
           <h2>New bank Account</h2>
-          <form action="{{ route('new-account') }}" method="post">
+          <form  method="post">
             @if(Session::has('success'))
             <div class="alert alert-success">{{ Session::get('success') }}</div>
             @endif
