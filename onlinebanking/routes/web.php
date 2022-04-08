@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +16,3 @@ use App\Http\Controllers\CustomController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login',[CustomController::class,'login']);
-Route::get('/registration',[CustomController::class,'registration']);
-Route::post('/register-user',[customController::class,'registerUser'])->name
-('register-user');
-Route::post('/login-user',[customController::class,'loginUser'])->name('login-user');
-Route::get('/dashboard',[customController::class,'dashboard']);
-Route::get('/logout',[CustomController::class,'logout']);
-
-Route::get('/new-bank-account',[CustomController::class,'newBank']);
