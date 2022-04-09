@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomController;
+use App\Http\Controllers\BenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ Route::get('/fund-user',[CustomController::class,'fundUser']);
 
 Route::get('/benificary',[CustomController::class,'Benificary']);
 
-Route::get('/benificiarydetail',[CustomController::class,'BenificaryDetail']);
+Route::get('/benificiarydetail',[BenController::class,'BenificaryDetail']);
 Route::get('/benficiary-user',[CustomController::class,'benficiaryUser']);
 
 Route::get('/list',[CustomController::class,'show']);

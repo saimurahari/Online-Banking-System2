@@ -85,11 +85,11 @@
             <div class="addben">
                 <center>
                 <a href="benificary" class="btn btn-success">Add benificiary</a>
-                <form action={{ url('benificiarydetail') }} method="post">
+                <form action={{ url('benificiarydetail') }} method="get">
                     @csrf
                     <div class="form-group">
-                        <label for="accholder">Account Holder</label>
-                        <input type="text" name="accholder" class="form-control" id="exampleInputPassword1" value="{{ $data2->accountnum }}" readonly>
+                        <label for="accname">Account Holder</label>
+                        <input type="text" name="accname" class="form-control" id="exampleInputPassword1" value="{{ $data2->accountnum }}" readonly>
                       </div>
                 </form>
             </center>
@@ -111,7 +111,7 @@
 
                    <tbody>
 
-                        @foreach ($members as $member)
+                        {{--  @foreach ($members as $member)
                         <td>{{ $member->name }}</td>
                         <td>{{ $member->email }}</td>
                         <td>{{ $member->mobile }}</td>
@@ -126,7 +126,7 @@
 
 
                       </tr>
-                      @endforeach
+                      @endforeach  --}}
                    </tbody>
                  </table>
 

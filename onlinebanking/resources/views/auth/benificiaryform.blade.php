@@ -35,7 +35,7 @@
       </nav>
       <div class="container">
           <h2>Add Benificiary</h2>
-          <form action={{ url('benficiary-user')}} method="get">
+          <form action={{ route('benficiary-user')}} method="POST">
             @if(session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
