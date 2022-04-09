@@ -26,3 +26,10 @@ Route::get('/dashboard',[customController::class,'dashboard']);
 Route::get('/logout',[CustomController::class,'logout']);
 
 Route::get('/new-bank-account',[CustomController::class,'newBank']);
+Route::get('/banking',[CustomController::class,'Banking']);
+Route::post('/bankform',[CustomController::class,'bankForm']);
+
+Route::get('/existing-account',[customController::class,'existAccount']);
+
+Route::get('/existing-user',[customController::class,'existingUser']);
+Route::get('/existinghome',[customController::class,'existingHome']);

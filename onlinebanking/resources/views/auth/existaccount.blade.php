@@ -7,13 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <style>
-        .container h3{
+        .container h2{
             display:flex;
             justify-content: center;
             padding-top:10px;
         }
-
-
     </style>
 </html>
 <body>
@@ -34,14 +32,28 @@
         </div>
       </nav>
       <div class="container">
-          <h3>Welcome to TSM Banking System</h3>
-          <div class="box-container">
-              <h4>Transfer Money on one click</h4>
-              <p>Send or receive money with zero fees, straight from your bank account to almost anyone. You can send or receive money even if your contact is not on Google Pay. Split lunch with a friend, pay the rent, or send money to mom. Recharge your mobile in a tap and finish with those monthly bills on Google Pay. Now you’re free to go shopping - online, or in a store. We’ve got you covered with easy access to past transactions, so you’re always in control. Use it wherever you see UPI or Google Pay. Earn scratch cards and other rewards as you use Google Pay worth up to ₹1,00,000*. You don’t need to hunt for coupon codes. If you win, your rewards go straight into your bank account. Pay and receive money instantly using your existing bank accounts. No more reloading mobile wallet balances or withdrawal fees. It’s your money, made simple. Google Pay works with all banks that support BHIM UPI.</p>
-          </div>
-          <div class="button-container">
-              <a href = "new-bank-account" class="btn btn-info">New account</a>
-              <a href="existing-account" class="btn btn-success">Login Net account</a>
-          </div>
+          <h2>Online banking System</h2>
+          <form action="{{ url('existinghome') }}" method="get">
+            @if(Session::has('success'))
+            <div class="alert alert-success">{{ Session::get('success') }}</div>
+             @endif
+             @if(Session::has('fail'))
+            <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+            @endif
+            @csrf
+            <div class="form-group">
+              <label for="accnum">Account Number</label>
+              <input type="text" class="form-control" name="accnum" id="accnum" placeholder="accountnum">
+              <small>Please Note you account number</small>
+            </div>
+
+              <div class="form-group">
+                <label for="mpin">MPIN</label>
+                <input type="password" class="form-control" id="mpin" name="mpin" placeholder="MPIN" minlength="6" maxlength="6">
+                <small>Enter 6 digit Mpin</small>
+              </div>
+
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
       </div>
 </body>

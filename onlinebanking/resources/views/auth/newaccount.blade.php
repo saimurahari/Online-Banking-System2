@@ -35,12 +35,11 @@
       </nav>
       <div class="container">
           <h2>New bank Account</h2>
-          <form  method="post">
-            @if(Session::has('success'))
-            <div class="alert alert-success">{{ Session::get('success') }}</div>
-            @endif
-            @if(Session::has('fail'))
-            <div class="alert alert-danger">{{ Session::get('failed') }}</div>
+          <form action="{{ url('bankform') }}" method="post">
+            @if(session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
             @endif
             @csrf
           <div class="form-group">
@@ -63,6 +62,7 @@
             <div class="form-group">
               <label for="accnum">Account Number</label>
               <input type="text" class="form-control" name="accnum" id="accnum" value="{{ $randomnumber}}" placeholder="accountnum">
+              <small>Please Note you account number</small>
             </div>
             <div class="form-group">
                 <label for="profile">Profile Photo</label>

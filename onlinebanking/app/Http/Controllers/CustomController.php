@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use DB;
 use Hash;
+use App\Models\Account;
 use Session;
 
 
@@ -80,6 +82,59 @@ class CustomController extends Controller
 
         return view('auth.newaccount',compact('data','randomnumber'));
     }
+    public function Banking(){
+        return view('new-bank-account');
+    }
+    public function bankForm(Request $request){
 
+
+        $account = new Account();
+        $account->fullname=$request->fullname;
+        $account->email=$request->email;
+        $account->accountnum=$request->accnum;
+        $account->mobile=$request->mobile;
+        $account->profile=$request->profileupload;
+        $account->balance=$request->openbalance;
+        $account->mpin=$request->mpin;
+
+        $account->save();
+        return redirect('new-bank-account')->with('status','Your New Account is created');
+
+
+
+    }
+    public function existAccount(){
+        $data=array();
+        if(Session::has('loginid')){
+            $data = Account::where('id','=',Session::get('loginid'))->first();
+        }
+        return view('auth.existaccount',compact('data'));
+    }
+    public function existingUser(Request $request){
+        $request->validate([
+            'accountnum'=>'required|email',
+            'mpin'=>'required|min:5|max:12',
+        ]);
+        $account = Account::where('accountnum','=',$request->accnum)->first();
+        if($account){
+            if($request->mpin=$account->mpin){
+                $request->session()->put('loginid',$account->accnum);
+                return redirect('existinghome');
+
+            }else{
+                return back()->with('fail','Password not matched');
+            }
+
+        }else{
+            return back()->with('fail','This email/password is not registered');
+        }
+    }
+    public function existingHome()
+    {
+        $data=array();
+        $data = DB::select('select * from accounts');
+
+        return view('auth.home',compact('data'));
+    }
 }
 
