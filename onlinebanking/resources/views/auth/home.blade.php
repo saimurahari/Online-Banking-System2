@@ -65,7 +65,7 @@
                     <a class="nav-item nav-link active" href="#">My Account</span></a>
                     <a class="nav-item nav-link" href="#">My profile</a>
                     <a class="nav-item nav-link" href="/fundtransfer">Fund Transfer</a>
-                    <a class="nav-item nav-link" href="/benificary">Benificiary</a>
+                    <a class="nav-item nav-link" href="/benificiarydetail">Benificiary</a>
                     <a class="nav-item nav-link" href="#">Check Statement</a>
                     <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Add Fund</a>
                     <a class="nav-item nav-link" href="logout">Logout</a>

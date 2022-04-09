@@ -49,14 +49,14 @@
                <a class="nav-item nav-link" href="#">About</a>
                <a class="nav-item nav-link" href="#">Contact</a>
 
-               <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ $data->accountnum }}</a>
+               <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ $data2->accountnum }}</a>
                <a class="nav-item nav-link" href="logout">Logout</a>
              </div>
            </div>
          </nav>
         <div class="container2">
             <h2>User Details</h2>
-            <h4>Welcome to {{ $data->fullname }}!!</h4>
+            {{--  <h4>Welcome to {{ $data->fullname }}!!</h4>  --}}
             <marquee direction="left">Avoid using public computers or public wireless access points for online banking and other activities involving sensitive information when possible.
                Always “sign out” or “log off” of password protected websites when finished to prevent unauthorized access.  Simply closing the browser window may not actually end your session.</marquee>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -85,9 +85,52 @@
             <div class="addben">
                 <center>
                 <a href="benificary" class="btn btn-success">Add benificiary</a>
-                <a href="benificiarydetail" class="btn btn-success">Add benificiary</a>
+                <form action={{ url('benificiarydetail') }} method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label for="accholder">Account Holder</label>
+                        <input type="text" name="accholder" class="form-control" id="exampleInputPassword1" value="{{ $data2->accountnum }}" readonly>
+                      </div>
+                </form>
             </center>
+            <div class="table">
+                <table class="table">
+                    <thead>
+                        <th colspan="6" class="text-center">Benificiary details</th>
 
+
+                    </thead>
+                    <thead>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Account Number</th>
+                        <th>Bank Name</th>
+                        <th>IFSC</th>
+                    </thead>
+
+                   <tbody>
+
+                        @foreach ($members as $member)
+                        <td>{{ $member->name }}</td>
+                        <td>{{ $member->email }}</td>
+                        <td>{{ $member->mobile }}</td>
+                        <td>{{ $member->accountnum }}</td>
+                        <td>{{ $member->bankname }}</td>
+                        <td>{{ $member->ifsc }}</td>
+
+
+
+                       <tr>
+
+
+
+                      </tr>
+                      @endforeach
+                   </tbody>
+                 </table>
+
+                </div>
             </div>
 
         </div>

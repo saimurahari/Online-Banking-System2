@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use DB;
 use Hash;
+use App\Models\Benificiary;
 use App\Models\Account;
 use Session;
 
@@ -101,7 +102,6 @@ class CustomController extends Controller
         return redirect('new-bank-account')->with('status','Your New Account is created');
 
 
-
     }
     public function existAccount(){
         $data=array();
@@ -146,15 +146,38 @@ class CustomController extends Controller
         if(Session::has('loginid')){
             $data = Account::where('id','=',Session::get('loginid'))->first();
         }
-        return view("auth.benificiary",compact('data'));
+        return view("auth.benificiaryform",compact('data'));
     }
-    public function BenificaryDetail(){
-        $data=array();
+
+    public function benficiaryUser(Request $request){
+
+        $benificary = new Benificiary();
+        $benificary->holdername=$request->holdername;
+        $benificary->accountholder=$request->accholder;
+        $benificary->name=$request->name;
+        $benificary->email=$request->email;
+        $benificary->mobile=$request->mobile;
+        $benificary->accountnum=$request->accnum;
+        $benificary->bankname=$request->bankname;
+        $benificary->ifsc=$request->ifsc;
+        $res = $benificary->save();
+
+        return redirect('benificary')->with('status','Benificiary Added Successfully');
+
+    }
+    public function BenificaryDetail(Request $request){
+        $data2=array();
         if(Session::has('loginid')){
-            $data = Account::where('id','=',Session::get('loginid'))->first();
+            $data2 = Account::where('id','=',Session::get('loginid'))->first();
         }
-        return view('auth.benificiaryform',compact('data'));
+        // return view("auth.benificarydetail",compact('data2'));
+        $accountnum = $request->input('accholder');
+
+        $user =  DB::table("benificiaries")->where("accountholder", $accountnum)->get();
+
+        return view('auth.benificarydetail',['members'=>$user],['data2'=>$data2]);
     }
+
 
 
 
