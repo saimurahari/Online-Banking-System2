@@ -169,12 +169,14 @@ class CustomController extends Controller
         $data2=array();
         if(Session::has('loginid')){
             $data2 = Account::where('id','=',Session::get('loginid'))->first();
-        }
+
+            // $var = DB::select("select accountholder from benificiaries where accountholder=558213");
+            // echo $var['accountholder'];
         // return view("auth.benificarydetail",compact('data2'));
-        $accountnum = $request->input('accholder');
 
-        $user =  DB::table("benificiaries")->where("accountholder", $accountnum)->get();
+        $user =  DB::table("benificiaries")->where("accountholder",558213)->get();
 
+        }
         return view('auth.benificarydetail',['members'=>$user],['data2'=>$data2]);
     }
 
@@ -182,4 +184,3 @@ class CustomController extends Controller
 
 
 }
-
