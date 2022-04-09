@@ -29,7 +29,16 @@ Route::get('/new-bank-account',[CustomController::class,'newBank']);
 Route::get('/banking',[CustomController::class,'Banking']);
 Route::post('/bankform',[CustomController::class,'bankForm']);
 
-Route::get('/existing-account',[customController::class,'existAccount']);
 
 Route::get('/existing-user',[customController::class,'existingUser']);
 Route::get('/existinghome',[customController::class,'existingHome']);
+
+Route::get('/fundtransfer',[CustomController::class,'fundTransfer']);
+
+Route::get('/fund-user',[CustomController::class,'fundUser']);
+
+Route::get('/benificary',[CustomController::class,'Benificary']);
+
+Route::get('/benificiarydetail',[CustomController::class,'BenificaryDetail']);
+Route::get('/benficiary-user',[CustomController::class,'benficiaryUser']);
+

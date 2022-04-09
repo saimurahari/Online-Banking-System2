@@ -110,31 +110,53 @@ class CustomController extends Controller
         }
         return view('auth.existaccount',compact('data'));
     }
-    public function existingUser(Request $request){
-        $request->validate([
-            'accountnum'=>'required|email',
-            'mpin'=>'required|min:5|max:12',
-        ]);
-        $account = Account::where('accountnum','=',$request->accnum)->first();
-        if($account){
-            if($request->mpin=$account->mpin){
-                $request->session()->put('loginid',$account->accnum);
-                return redirect('existinghome');
 
-            }else{
-                return back()->with('fail','Password not matched');
-            }
-
-        }else{
-            return back()->with('fail','This email/password is not registered');
-        }
-    }
     public function existingHome()
     {
         $data=array();
-        $data = DB::select('select * from accounts');
-
+        if(Session::has('loginid')){
+            $data = Account::where('id','=',Session::get('loginid'))->first();
+        }
         return view('auth.home',compact('data'));
     }
+
+    public function fundTransfer(){
+        $data=array();
+        if(Session::has('loginid')){
+            $data = Account::where('id','=',Session::get('loginid'))->first();
+        }
+        return view('auth.fundtransfer',compact('data'));
+
+    }
+    public function fundUser(Request $request){
+        $accountnum = $request->input('accnum');
+        $mpin = $request->input('mpin');
+        $amount = $request->input('amount');
+        $accountnum2 = $request->input('accnum2');
+
+        $affected = DB::update('update accounts set balance = balance+? where accountnum = ?', [$amount,$accountnum]);
+        $affected2 = DB::update('update accounts set balance = balance-? where accountnum = ?', [$amount,$accountnum2]);
+
+        echo"amount updated";
+        return back()->with('success','Amount Transfered successfully');
+    }
+
+    public function Benificary(){
+        $data=array();
+        if(Session::has('loginid')){
+            $data = Account::where('id','=',Session::get('loginid'))->first();
+        }
+        return view("auth.benificiary",compact('data'));
+    }
+    public function BenificaryDetail(){
+        $data=array();
+        if(Session::has('loginid')){
+            $data = Account::where('id','=',Session::get('loginid'))->first();
+        }
+        return view('auth.benificiaryform',compact('data'));
+    }
+
+
+
 }
 
