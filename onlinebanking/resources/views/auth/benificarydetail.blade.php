@@ -85,52 +85,17 @@
             <div class="addben">
                 <center>
                 <a href="benificary" class="btn btn-success">Add benificiary</a>
-                <form action={{ url('benificiarydetail') }} method="get">
+                <form action="{{ url('ben-user') }}" method="get">
                     @csrf
                     <div class="form-group">
                         <label for="accname">Account Holder</label>
-                        <input type="text" name="accname" class="form-control" id="exampleInputPassword1" value="{{ $data2->accountnum }}" readonly>
+                        <input type="text" name="accname2" class="form-control" id="exampleInputPassword1" value="{{ $data2->accountnum }}" readonly>
+                      </div>
+                      <div class="form-group">
+                        <input type="submit" class="btn btn-success" id="exampleInputPassword1" value="Display Benificiaries">
                       </div>
                 </form>
             </center>
-            <div class="table">
-                <table class="table">
-                    <thead>
-                        <th colspan="6" class="text-center">Benificiary details</th>
-
-
-                    </thead>
-                    <thead>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th>Account Number</th>
-                        <th>Bank Name</th>
-                        <th>IFSC</th>
-                    </thead>
-
-                   <tbody>
-
-                        {{--  @foreach ($members as $member)
-                        <td>{{ $member->name }}</td>
-                        <td>{{ $member->email }}</td>
-                        <td>{{ $member->mobile }}</td>
-                        <td>{{ $member->accountnum }}</td>
-                        <td>{{ $member->bankname }}</td>
-                        <td>{{ $member->ifsc }}</td>
-
-
-
-                       <tr>
-
-
-
-                      </tr>
-                      @endforeach  --}}
-                   </tbody>
-                 </table>
-
-                </div>
             </div>
 
         </div>

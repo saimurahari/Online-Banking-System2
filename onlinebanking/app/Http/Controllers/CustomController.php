@@ -165,20 +165,7 @@ class CustomController extends Controller
         return redirect('benificary')->with('status','Benificiary Added Successfully');
 
     }
-    public function BenificaryDetail(Request $request){
-        $data2=array();
-        if(Session::has('loginid')){
-            $data2 = Account::where('id','=',Session::get('loginid'))->first();
 
-            // $var = DB::select("select accountholder from benificiaries where accountholder=558213");
-            // echo $var['accountholder'];
-        // return view("auth.benificarydetail",compact('data2'));
-
-        $user =  DB::table("benificiaries")->where("accountholder",558213)->get();
-
-        }
-        return view('auth.benificarydetail',['members'=>$user],['data2'=>$data2]);
-    }
 
 
 

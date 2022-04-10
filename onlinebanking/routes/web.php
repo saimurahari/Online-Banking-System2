@@ -43,4 +43,6 @@ Route::get('/benificary',[CustomController::class,'Benificary']);
 Route::get('/benificiarydetail',[BenController::class,'BenificaryDetail']);
 Route::get('/benficiary-user',[CustomController::class,'benficiaryUser']);
 
+Route::get('/ben-user',[BenController::class,'benUser']);
+
 Route::get('/list',[CustomController::class,'show']);
