@@ -39,7 +39,7 @@
     <body>
         <table class="table">
             <thead>
-                <th colspan="6" class="text-center">Benificiary details</th>
+                <th colspan="6" class="text-center">Transaction details</th>
 
 
             </thead>

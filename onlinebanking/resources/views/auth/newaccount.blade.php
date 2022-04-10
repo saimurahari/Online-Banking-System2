@@ -24,7 +24,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home</span></a>
+            <a class="nav-item nav-link active" href="dashboard">Home</span></a>
             <a class="nav-item nav-link" href="#">About</a>
             <a class="nav-item nav-link" href="#">Contact</a>
             <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ $data->name }}</a>
