@@ -40,4 +40,24 @@ class BenController extends Controller
             return view('auth.benuser',['members'=>$user],['data2'=>$data2]);
         }
 
+        public function checkStatement(){
+            $data2=array();
+        if(Session::has('loginid')){
+            $data2 = Account::where('id','=',Session::get('loginid'))->first();
+        }
+
+        return view('auth.checkstatement',['data2'=>$data2]);
+
+        }
+        public function Check(Request $request){
+            $data2=array();
+        if(Session::has('loginid')){
+            $data2 = Account::where('id','=',Session::get('loginid'))->first();
+            $user =  DB::table("transactions")->where("accountholder",$request->Input('accname'))->get();
+            $user2 =  DB::table("transaction2s")->where("accountholder",$request->Input('accname'))->get();
+            return view('auth.transaction',['members'=>$user],['members2'=>$user2],['data2'=>$data2]);
+        }
+
+        }
+
 }

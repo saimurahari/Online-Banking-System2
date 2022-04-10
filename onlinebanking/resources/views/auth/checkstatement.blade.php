@@ -49,14 +49,14 @@
                <a class="nav-item nav-link" href="#">About</a>
                <a class="nav-item nav-link" href="#">Contact</a>
 
-               <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ $data->accountnum }}</a>
+               <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ $data2->accountnum }}</a>
                <a class="nav-item nav-link" href="logout">Logout</a>
              </div>
            </div>
          </nav>
         <div class="container2">
             <h2>User Details</h2>
-            <h4>Welcome to {{ $data->fullname }}!!</h4>
+            <h4>Welcome to {{ $data2->fullname }}!!</h4>
             <marquee direction="left">Avoid using public computers or public wireless access points for online banking and other activities involving sensitive information when possible.
                Always “sign out” or “log off” of password protected websites when finished to prevent unauthorized access.  Simply closing the browser window may not actually end your session.</marquee>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -70,8 +70,8 @@
                    <a class="nav-item nav-link active" href="#">My Account</span></a>
                    <a class="nav-item nav-link" href="#">My profile</a>
                    <a class="nav-item nav-link" href="/fundtransfer">Fund Transfer</a>
-                   <a class="nav-item nav-link" href="/benificiarydetail">Benificiary</a>
-                   <a class="nav-item nav-link" href="/check-statement">Check Statement</a>
+                   <a class="nav-item nav-link" href="#">Benificiary</a>
+                   <a class="nav-item nav-link" href="#">Check Statement</a>
                    <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Add Fund</a>
                    <a class="nav-item nav-link" href="logout">Logout</a>
                  </div>
@@ -81,11 +81,20 @@
 
         </div>
         <div class="container4">
-            <h3>Benificiary Details</h3>
+            <h3>Transaction Details</h3>
             <div class="addben">
                 <center>
-                <a href="benificary" class="btn btn-success">Add benificiary</a>
-                <a href="benificiarydetail" class="btn btn-success">Add benificiary</a>
+                    <form action="{{ url('checkstatement') }}" method="get">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="accname" class="form-control" id="exampleInputPassword1" placeholder="Account Name" value="{{ $data2->accountnum }}" readonly>
+                          </div>
+                          <div class="form-group">
+                            <input type="submit" class="btn btn-success" id="exampleInputPassword1" value="Display Statement">
+                          </div>
+                    </form>
+
+
             </center>
 
             </div>

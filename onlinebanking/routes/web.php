@@ -45,4 +45,6 @@ Route::get('/benficiary-user',[CustomController::class,'benficiaryUser']);
 
 Route::get('/ben-user',[BenController::class,'benUser']);
 
-Route::get('/list',[CustomController::class,'show']);
+Route::get('/check-statement',[BenController::class,'checkStatement']);
+Route::get('/checkuser',[BenController::class,'checkUser']);
+Route::get('/checkstatement',[BenController::class,'Check']);

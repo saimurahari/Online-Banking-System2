@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use DB;
 use Hash;
+use Carbon\Carbon;
 use App\Models\Benificiary;
 use App\Models\Account;
 use Session;
@@ -133,11 +134,15 @@ class CustomController extends Controller
         $mpin = $request->input('mpin');
         $amount = $request->input('amount');
         $accountnum2 = $request->input('accnum2');
+        $date = Carbon::now();
+        $credit = "null";
 
         $affected = DB::update('update accounts set balance = balance+? where accountnum = ?', [$amount,$accountnum]);
         $affected2 = DB::update('update accounts set balance = balance-? where accountnum = ?', [$amount,$accountnum2]);
+        $affected3 = DB::insert('insert into transactions (accountholder,date,credit,debit,accountnum) VALUES(?,?,?,?,?)',[$accountnum2,$date,$credit,$amount,$accountnum]);
+        $affected4 = DB::insert('insert into transaction2s (accountholder,date,credit,debit,accountnum) VALUES(?,?,?,?,?)',[$accountnum,$date,$amount,$credit,$accountnum2]);
 
-        echo"amount updated";
+
         return back()->with('success','Amount Transfered successfully');
     }
 
